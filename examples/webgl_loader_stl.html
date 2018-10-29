@@ -68,11 +68,10 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 15 );
-				camera.position.set( 3, 0.15, 3 );
+				camera = new THREE.PerspectiveCamera( 160, window.innerWidth / window.innerHeight, 2, 15 );
+				camera.position.set( 15, 15, 5);
 
-				cameraTarget = new THREE.Vector3( 0, - 0.25, 0 );
-
+                cameraTarget = new THREE.Vector3( 0, 0, 0 );
 				scene = new THREE.Scene();
 				scene.background = new THREE.Color( 0x72645b );
 				scene.fog = new THREE.Fog( 0x72645b, 2, 15 );
@@ -94,13 +93,13 @@
 				// ASCII file
 
 				var loader = new THREE.STLLoader();
-				loader.load( './models/stl/binary/Dragon-Z-flat.stl', function ( geometry ) {
+				loader.load( './models/stl/binary/loubie_aria_dragon.stl', function ( geometry ) {
 
 					var material = new THREE.MeshPhongMaterial( { color: 0xff5533, specular: 0x111111, shininess: 200 } );
 					var mesh = new THREE.Mesh( geometry, material );
 
-					mesh.position.set( 0, - 0.25, 0.6 );
-					mesh.rotation.set( 0, - Math.PI / 2, 0 );
+					mesh.position.set( 0, 5, 0.6 );
+					mesh.rotation.set( 0,90, 90 );
 					mesh.scale.set( 0.5, 0.5, 0.5 );
 
 					mesh.castShadow = true;
@@ -113,60 +112,60 @@
 
 				// Binary files
 
-				var material = new THREE.MeshPhongMaterial( { color: 0xAAAAAA, specular: 0x111111, shininess: 200 } );
-
-				loader.load( './models/stl/binary/Dragon-Z-flat.stl', function ( geometry ) {
-
-					var mesh = new THREE.Mesh( geometry, material );
-
-					mesh.position.set( 0, - 0.37, - 0.6 );
-					mesh.rotation.set( - Math.PI / 2, 0, 0 );
-					mesh.scale.set( 2, 2, 2 );
-
-					mesh.castShadow = true;
-					mesh.receiveShadow = true;
-
-					scene.add( mesh );
-
-				} );
-
-				loader.load( './models/stl/binary/pr2_head_tilt.stl', function ( geometry ) {
-
-					var mesh = new THREE.Mesh( geometry, material );
-
-					mesh.position.set( 0.136, - 0.37, - 0.6 );
-					mesh.rotation.set( - Math.PI / 2, 0.3, 0 );
-					mesh.scale.set( 2, 2, 2 );
-
-					mesh.castShadow = true;
-					mesh.receiveShadow = true;
-
-					scene.add( mesh );
-
-				} );
-
-				// Colored binary STL
-				loader.load( './models/stl/binary/Dragon-Z-flat.stl', function ( geometry ) {
-
-					var meshMaterial = material;
-					if ( geometry.hasColors ) {
-
-						meshMaterial = new THREE.MeshPhongMaterial( { opacity: geometry.alpha, vertexColors: THREE.VertexColors } );
-
-					}
-
-					var mesh = new THREE.Mesh( geometry, meshMaterial );
-
-					mesh.position.set( 0.5, 0.2, 0 );
-					mesh.rotation.set( - Math.PI / 2, Math.PI / 2, 0 );
-					mesh.scale.set( 0.3, 0.3, 0.3 );
-
-					mesh.castShadow = true;
-					mesh.receiveShadow = true;
-
-					scene.add( mesh );
-
-				} );
+//				var material = new THREE.MeshPhongMaterial( { color: 0xAAAAAA, specular: 0x111111, shininess: 200 } );
+//
+//				loader.load( './models/stl/binary/loubie_aria_dragon.stl', function ( geometry ) {
+//
+//					var mesh = new THREE.Mesh( geometry, material );
+//
+//					mesh.position.set( 0, - 0.37, - 0.6 );
+//					mesh.rotation.set( - Math.PI / 2, 0, 0 );
+//					mesh.scale.set( 2, 2, 2 );
+//
+//					mesh.castShadow = true;
+//					mesh.receiveShadow = true;
+//
+//					scene.add( mesh );
+//
+//				} );
+//
+//				loader.load( './models/stl/binary/loubie_aria_dragon.stl', function ( geometry ) {
+//
+//					var mesh = new THREE.Mesh( geometry, material );
+//
+//					mesh.position.set( 0.136, - 0.37, - 0.6 );
+//					mesh.rotation.set( - Math.PI / 2, 0.3, 0 );
+//					mesh.scale.set( 2, 2, 2 );
+//
+//					mesh.castShadow = true;
+//					mesh.receiveShadow = true;
+//
+//					scene.add( mesh );
+//
+//				} );
+//
+//				// Colored binary STL
+//				loader.load( './models/stl/binary/loubie_aria_dragon.stl', function ( geometry ) {
+//
+//					var meshMaterial = material;
+//					if ( geometry.hasColors ) {
+//
+//						meshMaterial = new THREE.MeshPhongMaterial( { opacity: geometry.alpha, vertexColors: THREE.VertexColors } );
+//
+//					}
+//
+//					var mesh = new THREE.Mesh( geometry, meshMaterial );
+//
+//					mesh.position.set( 0.5, 0.2, 0 );
+//					mesh.rotation.set( - Math.PI / 2, Math.PI / 2, 0 );
+//					mesh.scale.set( 0.3, 0.3, 0.3 );
+//
+//					mesh.castShadow = true;
+//					mesh.receiveShadow = true;
+//
+//					scene.add( mesh );
+//
+//				} );
 
 
 				// Lights
@@ -245,8 +244,8 @@
 
 				var timer = Date.now() * 0.0005;
 
-				camera.position.x = Math.cos( timer ) * 3;
-				camera.position.z = Math.sin( timer ) * 3;
+				camera.position.x = Math.cos( timer ) * 2;
+				camera.position.z = 0;
 
 				camera.lookAt( cameraTarget );
 
